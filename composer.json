@@ -1,0 +1,22 @@
+{
+    "name": "aiti/module-productresponsibleuseradminui",
+    "description": "Product Responsible User Api",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "lukyz",
+            "email": "lukas.cesal@aiti.cz"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Aiti\\ProductResponsibleUserAdminUi\\": ""
+        }
+    }
+}
