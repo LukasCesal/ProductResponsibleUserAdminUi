@@ -3,35 +3,45 @@ declare(strict_types=1);
 
 namespace Aiti\ProductResponsibleUserAdminUi\Controller\Adminhtml\ProductResponsibleUser;
 
-class NewAction extends \Aiti\ProductResponsibleUserAdminUi\Controller\Adminhtml\ProductResponsibleUser
+use Aiti\ProductResponsibleUserAdminUi\Controller\Adminhtml\ProductResponsibleUser as User;
+use Magento\Backend\App\Action\Context;
+use Magento\Backend\Model\View\Result\ForwardFactory;
+use Magento\Framework\Controller\ResultInterface;
+
+class NewAction extends User
 {
 
     protected $resultForwardFactory;
 
     /**
-     * @param \Magento\Backend\App\Action\Context $context
-     * @param \Magento\Framework\Registry $coreRegistry
-     * @param \Magento\Backend\Model\View\Result\ForwardFactory $resultForwardFactory
+     * @param Context $context
+     * @param ForwardFactory $resultForwardFactory
      */
     public function __construct(
-        \Magento\Backend\App\Action\Context $context,
-        \Magento\Framework\Registry $coreRegistry,
-        \Magento\Backend\Model\View\Result\ForwardFactory $resultForwardFactory
+        Context $context,
+        ForwardFactory $resultForwardFactory
     ) {
         $this->resultForwardFactory = $resultForwardFactory;
-        parent::__construct($context, $coreRegistry);
+        parent::__construct($context);
     }
 
     /**
      * New action
      *
-     * @return \Magento\Framework\Controller\ResultInterface
+     * @return ResultInterface
      */
     public function execute()
     {
-        /** @var \Magento\Framework\Controller\Result\Forward $resultForward */
         $resultForward = $this->resultForwardFactory->create();
         return $resultForward->forward('edit');
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function _isAllowed()
+    {
+        return $this->_authorization->isAllowed('Aiti_ProductResponsibleUser::User');
     }
 }
 

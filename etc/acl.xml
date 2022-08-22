@@ -4,10 +4,10 @@
 		<resources>
 			<resource id="Magento_Backend::admin">
 				<resource id="Aiti_ProductResponsibleUserAdminUi::ProductResponsibleUser" title="ProductResponsibleUser" sortOrder="10">
-					<resource id="Aiti_ProductResponsibleUserAdminUi::ProductResponsibleUser_save" title="Save ProductResponsibleUser" sortOrder="10"/>
-					<resource id="Aiti_ProductResponsibleUserAdminUi::ProductResponsibleUser_delete" title="Delete ProductResponsibleUser" sortOrder="20"/>
-					<resource id="Aiti_ProductResponsibleUserAdminUi::ProductResponsibleUser_update" title="Update ProductResponsibleUser" sortOrder="30"/>
-					<resource id="Aiti_ProductResponsibleUserAdminUi::ProductResponsibleUser_view" title="View ProductResponsibleUser" sortOrder="40"/>
+					<resource id="Aiti_ProductResponsibleUserAdminUi::ProductResponsibleUser_save" title="Save Product Responsible User" sortOrder="10"/>
+					<resource id="Aiti_ProductResponsibleUserAdminUi::ProductResponsibleUser_delete" title="Delete Product Responsible User" sortOrder="20"/>
+					<resource id="Aiti_ProductResponsibleUserAdminUi::ProductResponsibleUser_update" title="Update Product Responsible User" sortOrder="30"/>
+					<resource id="Aiti_ProductResponsibleUserAdminUi::ProductResponsibleUser_view" title="View Product Responsible User" sortOrder="40"/>
 				</resource>
 			</resource>
 		</resources>

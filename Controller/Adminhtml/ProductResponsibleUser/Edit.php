@@ -3,58 +3,75 @@ declare(strict_types=1);
 
 namespace Aiti\ProductResponsibleUserAdminUi\Controller\Adminhtml\ProductResponsibleUser;
 
-class Edit extends \Aiti\ProductResponsibleUserAdminUi\Controller\Adminhtml\ProductResponsibleUser
+use Aiti\ProductResponsibleUserAdminUi\Controller\Adminhtml\ProductResponsibleUser as User;
+use Aiti\ProductResponsibleUserApi\Api\ProductResponsibleUserRepositoryInterface;
+use Magento\Backend\App\Action\Context;
+use Magento\Backend\Model\View\Result\Redirect;
+use Magento\Framework\App\ResponseInterface;
+use Magento\Framework\Controller\ResultInterface;
+use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\View\Result\Page;
+use Magento\Framework\View\Result\PageFactory;
+
+class Edit extends User
 {
 
-    protected $resultPageFactory;
+/**
+* @var
+*/
+    protected $productResponsibleUserRepositoryInterface;
 
     /**
-     * @param \Magento\Backend\App\Action\Context $context
-     * @param \Magento\Framework\Registry $coreRegistry
-     * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
+     * Edit constructor.
+     * @param Context $context
+     * @param PageFactory $resultPageFactory
+     * @param ProductResponsibleUserRepositoryInterface $productResponsibleUserRepositoryInterface
      */
     public function __construct(
-        \Magento\Backend\App\Action\Context $context,
-        \Magento\Framework\Registry $coreRegistry,
-        \Magento\Framework\View\Result\PageFactory $resultPageFactory
+        Context $context,
+        PageFactory $resultPageFactory,
+        ProductResponsibleUserRepositoryInterface $productResponsibleUserRepositoryInterface
     ) {
         $this->resultPageFactory = $resultPageFactory;
-        parent::__construct($context, $coreRegistry);
+        $this->productResponsibleUserRepositoryInterface = $productResponsibleUserRepositoryInterface;
+        parent::__construct($context);
     }
 
     /**
-     * Edit action
-     *
-     * @return \Magento\Framework\Controller\ResultInterface
+     * @return Redirect|ResponseInterface|ResultInterface|Page
      */
     public function execute()
     {
-        // 1. Get ID and create model
-        $id = $this->getRequest()->getParam('productresponsibleuser_id');
-        $model = $this->_objectManager->create(\Aiti\ProductResponsibleUserAdminUi\Model\ProductResponsibleUser::class);
-        
-        // 2. Initial checking
+        $resultPage = $this->resultPageFactory->create();
+        $id = (int) $this->getRequest()->getParam('id');
+
+        $model = null;
         if ($id) {
-            $model->load($id);
-            if (!$model->getId()) {
-                $this->messageManager->addErrorMessage(__('This Productresponsibleuser no longer exists.'));
-                /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
-                $resultRedirect = $this->resultRedirectFactory->create();
-                return $resultRedirect->setPath('*/*/');
+            try {
+
+                $model = $this->productResponsibleUserRepositoryInterface->get($id);
+                if (!$model->getUserId()) {
+                    $this->messageManager->addErrorMessage(__('This Productresponsibleuser no longer exists.'));
+                    /** @var Redirect $resultRedirect */
+                    $resultRedirect = $this->resultRedirectFactory->create();
+                    return $resultRedirect->setPath('*/*/');
+                }
+            } catch (\Exception $e) {
+                $this->messageManager->addErrorMessage($e->getMessage());
             }
         }
-        $this->_coreRegistry->register('aiti_productresponsibleuseradminui_productresponsibleuser', $model);
-        
-        // 3. Build edit form
-        /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
-        $resultPage = $this->resultPageFactory->create();
-        $this->initPage($resultPage)->addBreadcrumb(
-            $id ? __('Edit Productresponsibleuser') : __('New Productresponsibleuser'),
-            $id ? __('Edit Productresponsibleuser') : __('New Productresponsibleuser')
-        );
-        $resultPage->getConfig()->getTitle()->prepend(__('Productresponsibleusers'));
-        $resultPage->getConfig()->getTitle()->prepend($model->getId() ? __('Edit Productresponsibleuser %1', $model->getId()) : __('New Productresponsibleuser'));
+
+        $resultPage->getConfig()->getTitle()->prepend(__('Users'));
+        $resultPage->getConfig()->getTitle()->prepend($model && $model->getId() ? __('Edit Product responsible user %1', $model->getId()) : __('New Product responsible user'));
         return $resultPage;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function _isAllowed()
+    {
+        return $this->_authorization->isAllowed('Aiti_ProductResponsibleUser::User');
     }
 }
 

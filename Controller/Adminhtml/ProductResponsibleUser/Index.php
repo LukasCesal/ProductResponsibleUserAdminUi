@@ -18,6 +18,7 @@ class Index extends \Magento\Backend\App\Action
         \Magento\Backend\App\Action\Context $context,
         \Magento\Framework\View\Result\PageFactory $resultPageFactory
     ) {
+
         $this->resultPageFactory = $resultPageFactory;
         parent::__construct($context);
     }
@@ -29,6 +30,7 @@ class Index extends \Magento\Backend\App\Action
      */
     public function execute()
     {
+
         $resultPage = $this->resultPageFactory->create();
             $resultPage->getConfig()->getTitle()->prepend(__("ProductResponsibleUser"));
             return $resultPage;

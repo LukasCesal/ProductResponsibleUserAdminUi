@@ -16,7 +16,7 @@ class DeleteButton extends GenericButton implements ButtonProviderInterface
         $data = [];
         if ($this->getModelId()) {
             $data = [
-                'label' => __('Delete Productresponsibleuser'),
+                'label' => __('Delete user'),
                 'class' => 'delete',
                 'on_click' => 'deleteConfirm(\'' . __(
                     'Are you sure you want to do this?'
@@ -34,7 +34,7 @@ class DeleteButton extends GenericButton implements ButtonProviderInterface
      */
     public function getDeleteUrl()
     {
-        return $this->getUrl('*/*/delete', ['productresponsibleuser_id' => $this->getModelId()]);
+        return $this->getUrl('*/*/delete', ['id' => $this->getModelId()]);
     }
 }
 

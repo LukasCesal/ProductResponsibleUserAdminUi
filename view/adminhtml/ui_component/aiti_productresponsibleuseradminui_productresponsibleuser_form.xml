@@ -19,7 +19,7 @@
 		<deps>
 			<dep>aiti_productresponsibleuseradminui_productresponsibleuser_form.productresponsibleuser_form_data_source</dep>
 		</deps>
-	</settings>
+	</settings><!--
 	<dataSource name="productresponsibleuser_form_data_source">
 		<argument name="data" xsi:type="array">
 			<item name="js_config" xsi:type="array">
@@ -29,31 +29,74 @@
 		<settings>
 			<submitUrl path="*/*/save"/>
 		</settings>
-		<dataProvider name="productresponsibleuser_form_data_source" class="Aiti\ProductResponsibleUserAdminUi\Model\ProductResponsibleUser\DataProvider">
+		<dataProvider name="productresponsibleuser_form_data_source" class="Aiti\ProductResponsibleUserAdminUi\Ui\DataProvider\ProductResponsibleUserDataProvider">
 			<settings>
-				<requestFieldName>productresponsibleuser_id</requestFieldName>
-				<primaryFieldName>productresponsibleuser_id</primaryFieldName>
+				<requestFieldName>user_id</requestFieldName>
+				<primaryFieldName>user_id</primaryFieldName>
 			</settings>
 		</dataProvider>
-	</dataSource>
+	</dataSource>-->
+    <dataSource name="productresponsibleuser_form_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Aiti\ProductResponsibleUserAdminUi\Ui\DataProvider\ProductResponsibleUserDataProvider</argument>
+            <argument name="name" xsi:type="string">productresponsibleuser_form_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">user_id</argument>
+            <argument name="requestFieldName" xsi:type="string">user_id</argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="*/*/save"/>
+        </settings>
+    </dataSource>
 	<fieldset name="general">
 		<settings>
-			<label>General</label>
+			<label translate="true">User information</label>
 		</settings>
-		<field name="user_id" formElement="textarea" sortOrder="10">
-			<argument name="data" xsi:type="array">
-				<item name="config" xsi:type="array">
-					<item name="source" xsi:type="string">ProductResponsibleUser</item>
-				</item>
-			</argument>
-			<settings>
-				<dataType>text</dataType>
-				<label translate="true">user_id</label>
-				<dataScope>user_id</dataScope>
-				<validation>
-					<rule name="required-entry" xsi:type="boolean">false</rule>
-				</validation>
-			</settings>
-		</field>
+        <field name="user_id" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">block</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+<!--                <visible>false</visible>-->
+                <dataScope>user_id</dataScope>
+            </settings>
+        </field>
+        <field name="first_name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="label" xsi:type="string" translate="true">First name</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="last_name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="label" xsi:type="string" translate="true">Last name</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
 	</fieldset>
 </form>

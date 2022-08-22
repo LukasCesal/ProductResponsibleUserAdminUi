@@ -14,25 +14,24 @@
 			<button name="add">
 				<url path="*/*/new"/>
 				<class>primary</class>
-				<label translate="true">Add new ProductResponsibleUser</label>
+				<label translate="true">Add new user</label>
 			</button>
 		</buttons>
 	</settings>
-	<dataSource name="aiti_productresponsibleuseradminui_productresponsibleuser_listing_data_source" component="Magento_Ui/js/grid/provider">
-		<settings>
-			<storageConfig>
-				<param name="indexField" xsi:type="string">productresponsibleuser_id</param>
-			</storageConfig>
-			<updateUrl path="mui/index/render"/>
-		</settings>
-		<aclResource>Aiti_ProductResponsibleUserAdminUi::ProductResponsibleUser</aclResource>
-		<dataProvider name="aiti_productresponsibleuseradminui_productresponsibleuser_listing_data_source" class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
-			<settings>
-				<requestFieldName>id</requestFieldName>
-				<primaryFieldName>productresponsibleuser_id</primaryFieldName>
-			</settings>
-		</dataProvider>
-	</dataSource>
+    <dataSource name="aiti_productresponsibleuseradminui_productresponsibleuser_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">productresponsibleuser_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <dataProvider class="Aiti\ProductResponsibleUserAdminUi\Ui\DataProvider\ProductResponsibleUserDataProvider" name="aiti_productresponsibleuseradminui_productresponsibleuser_listing_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>user_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
 	<listingToolbar name="listing_top">
 		<settings>
 			<sticky>true</sticky>
@@ -47,7 +46,7 @@
 			<editorConfig>
 				<param name="selectProvider" xsi:type="string">aiti_productresponsibleuseradminui_productresponsibleuser_listing.aiti_productresponsibleuseradminui_productresponsibleuser_listing.aiti_productresponsibleuseradminui_productresponsibleuser_columns.ids</param>
 				<param name="enabled" xsi:type="boolean">true</param>
-				<param name="indexField" xsi:type="string">productresponsibleuser_id</param>
+				<param name="indexField" xsi:type="string">user_id</param>
 				<param name="clientConfig" xsi:type="array">
 					<item name="saveUrl" xsi:type="url" path="aiti_productresponsibleuseradminui/ProductResponsibleUser/inlineEdit"/>
 					<item name="validateBeforeSave" xsi:type="boolean">false</item>
@@ -66,10 +65,10 @@
 		</settings>
 		<selectionsColumn name="ids">
 			<settings>
-				<indexField>productresponsibleuser_id</indexField>
+				<indexField>user_id</indexField>
 			</settings>
 		</selectionsColumn>
-		<column name="productresponsibleuser_id">
+		<column name="id">
 			<settings>
 				<filter>text</filter>
 				<sorting>asc</sorting>
@@ -88,12 +87,12 @@
 				</editor>
 			</settings>
 		</column>
-		<actionsColumn name="actions" class="Aiti\ProductResponsibleUserAdminUi\Ui\Component\Listing\Column\ProductResponsibleUserActions">
+		<!--<actionsColumn name="actions" class="Aiti\ProductResponsibleUserAdminUi\Ui\Component\Listing\Column\ProductResponsibleUserActions">
 			<settings>
-				<indexField>productresponsibleuser_id</indexField>
+				<indexField>id</indexField>
 				<resizeEnabled>false</resizeEnabled>
 				<resizeDefaultWidth>107</resizeDefaultWidth>
 			</settings>
-		</actionsColumn>
+		</actionsColumn>-->
 	</columns>
 </listing>

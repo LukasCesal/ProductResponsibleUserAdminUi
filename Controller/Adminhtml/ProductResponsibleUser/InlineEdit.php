@@ -31,7 +31,7 @@ class InlineEdit extends \Magento\Backend\App\Action
         $resultJson = $this->jsonFactory->create();
         $error = false;
         $messages = [];
-        
+
         if ($this->getRequest()->getParam('isAjax')) {
             $postItems = $this->getRequest()->getParam('items', []);
             if (!count($postItems)) {
@@ -39,8 +39,8 @@ class InlineEdit extends \Magento\Backend\App\Action
                 $error = true;
             } else {
                 foreach (array_keys($postItems) as $modelid) {
-                    /** @var \Aiti\ProductResponsibleUserAdminUi\Model\ProductResponsibleUser $model */
-                    $model = $this->_objectManager->create(\Aiti\ProductResponsibleUserAdminUi\Model\ProductResponsibleUser::class)->load($modelid);
+                    /** @var \Aiti\ProductResponsibleUser\Model\ProductResponsibleUser $model */
+                    $model = $this->_objectManager->create(\Aiti\ProductResponsibleUser\Model\ProductResponsibleUser::class)->load($modelid);
                     try {
                         $model->setData(array_merge($model->getData(), $postItems[$modelid]));
                         $model->save();
@@ -51,7 +51,7 @@ class InlineEdit extends \Magento\Backend\App\Action
                 }
             }
         }
-        
+
         return $resultJson->setData([
             'messages' => $messages,
             'error' => $error

@@ -3,23 +3,16 @@ declare(strict_types=1);
 
 namespace Aiti\ProductResponsibleUserAdminUi\Controller\Adminhtml;
 
-abstract class ProductResponsibleUser extends \Magento\Backend\App\Action
+use Magento\Backend\App\Action;
+use Magento\Backend\Model\View\Result\Page;
+
+
+abstract class ProductResponsibleUser extends Action
 {
 
-    const ADMIN_RESOURCE = 'Aiti_ProductResponsibleUserAdminUi::top_level';
+    const ADMIN_RESOURCE = 'Magento_Catalog::inventory';
     protected $_coreRegistry;
 
-    /**
-     * @param \Magento\Backend\App\Action\Context $context
-     * @param \Magento\Framework\Registry $coreRegistry
-     */
-    public function __construct(
-        \Magento\Backend\App\Action\Context $context,
-        \Magento\Framework\Registry $coreRegistry
-    ) {
-        $this->_coreRegistry = $coreRegistry;
-        parent::__construct($context);
-    }
 
     /**
      * Init page
@@ -31,8 +24,9 @@ abstract class ProductResponsibleUser extends \Magento\Backend\App\Action
     {
         $resultPage->setActiveMenu(self::ADMIN_RESOURCE)
             ->addBreadcrumb(__('Aiti'), __('Aiti'))
-            ->addBreadcrumb(__('Productresponsibleuser'), __('Productresponsibleuser'));
+            ->addBreadcrumb(__('Product responsibl user'), __('Product Responsible Users'));
         return $resultPage;
     }
+
 }
 

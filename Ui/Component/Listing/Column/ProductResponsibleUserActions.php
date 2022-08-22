@@ -39,13 +39,13 @@ class ProductResponsibleUserActions extends \Magento\Ui\Component\Listing\Column
     {
         if (isset($dataSource['data']['items'])) {
             foreach ($dataSource['data']['items'] as & $item) {
-                if (isset($item['productresponsibleuser_id'])) {
+                if (isset($item['id'])) {
                     $item[$this->getData('name')] = [
                         'edit' => [
                             'href' => $this->urlBuilder->getUrl(
                                 static::URL_PATH_EDIT,
                                 [
-                                    'productresponsibleuser_id' => $item['productresponsibleuser_id']
+                                    'id' => $item['id']
                                 ]
                             ),
                             'label' => __('Edit')
@@ -54,7 +54,7 @@ class ProductResponsibleUserActions extends \Magento\Ui\Component\Listing\Column
                             'href' => $this->urlBuilder->getUrl(
                                 static::URL_PATH_DELETE,
                                 [
-                                    'productresponsibleuser_id' => $item['productresponsibleuser_id']
+                                    'id' => $item['id']
                                 ]
                             ),
                             'label' => __('Delete'),
@@ -67,7 +67,7 @@ class ProductResponsibleUserActions extends \Magento\Ui\Component\Listing\Column
                 }
             }
         }
-        
+
         return $dataSource;
     }
 }
