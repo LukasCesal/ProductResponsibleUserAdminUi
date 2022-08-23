@@ -41,7 +41,7 @@
             <argument name="class" xsi:type="string">Aiti\ProductResponsibleUserAdminUi\Ui\DataProvider\ProductResponsibleUserDataProvider</argument>
             <argument name="name" xsi:type="string">productresponsibleuser_form_data_source</argument>
             <argument name="primaryFieldName" xsi:type="string">user_id</argument>
-            <argument name="requestFieldName" xsi:type="string">user_id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
         </argument>
         <argument name="data" xsi:type="array">
             <item name="js_config" xsi:type="array">
@@ -55,6 +55,7 @@
 	<fieldset name="general">
 		<settings>
 			<label translate="true">User information</label>
+            <dataScope>general</dataScope>
 		</settings>
         <field name="user_id" formElement="input">
             <argument name="data" xsi:type="array">
@@ -64,7 +65,7 @@
             </argument>
             <settings>
                 <dataType>text</dataType>
-<!--                <visible>false</visible>-->
+                <visible>false</visible>
                 <dataScope>user_id</dataScope>
             </settings>
         </field>

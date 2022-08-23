@@ -52,10 +52,11 @@ class ProductResponsibleUserDataProvider extends DataProvider
         $this->searchResultFactory = $searchResultFactory;
     }
 
-       /* public function getData()
+        public function getData()
     {
+        $ahoj = parent::getData();
         return parent::getData();
-    }*/
+    }
 
     public function getSearchResult()
     {
