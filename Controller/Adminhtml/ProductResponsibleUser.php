@@ -18,7 +18,7 @@ abstract class ProductResponsibleUser extends Action
     {
         $resultPage->setActiveMenu(self::ADMIN_RESOURCE)
             ->addBreadcrumb(__('Aiti'), __('Aiti'))
-            ->addBreadcrumb(__('Productresponsibleuser'), __('Productresponsibleuser'));
+            ->addBreadcrumb(__('Product responsible user'), __('Product responsible user'));
         return $resultPage;
     }
 }
