@@ -99,5 +99,21 @@
                 </validation>
             </settings>
         </field>
+        <field name="department" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Aiti\ProductResponsibleUser\Model\Source\Department</item>
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">Department</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Department</label>
+                <dataScope>department</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
 	</fieldset>
 </form>

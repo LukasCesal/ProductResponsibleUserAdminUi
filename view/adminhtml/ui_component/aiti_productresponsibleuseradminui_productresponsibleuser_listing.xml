@@ -112,7 +112,14 @@
                 </editor>
             </settings>
         </column>
-
+        <column name="department" component="Magento_Ui/js/grid/columns/select" sortOrder="40">
+            <settings>
+                <filter>select</filter>
+                <options class="Aiti\ProductResponsibleUser\Model\Source\Department"/>
+                <dataType>select</dataType>
+                <label translate="true">Department</label>
+            </settings>
+        </column>
         <column name="created_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date">
             <settings>
                 <filter>dateRange</filter>
