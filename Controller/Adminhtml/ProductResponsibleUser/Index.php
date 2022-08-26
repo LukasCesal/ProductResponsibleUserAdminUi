@@ -32,7 +32,7 @@ class Index extends \Magento\Backend\App\Action
     {
 
         $resultPage = $this->resultPageFactory->create();
-            $resultPage->getConfig()->getTitle()->prepend(__("ProductResponsibleUser"));
+            $resultPage->getConfig()->getTitle()->prepend(__("Product Responsible User"));
             return $resultPage;
     }
 }
